@@ -13,6 +13,16 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.0.1] — 2026-09-03
+
+### Notes
+
+Testrelease för att verifiera hela publiceringskedjan: bygge, regelkontroller,
+release i de två distributionsrepona och skrivning till shop-metafältet
+`verkstaden5.chiploads`. Inga ändringar i skärdatan.
+
+---
+
 ## [2.0.0] — 2026-09-03
 
 Databaserna byggs nu ur en gemensam källa i stället för att underhållas för hand
