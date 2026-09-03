@@ -13,6 +13,34 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.1.0] — 2026-09-03
+
+### Added
+
+- **Produktsidornas skärdatatabell.** `build/emit-product-data.mjs` skriver ett
+  metafält `custom.skardata` (JSON) per produkt, ett per artikelfamilj som
+  täcker alla dess varianter. Metafältet lagrar varje verktygs naturliga,
+  okapade chipload (industriell-profilen — den kapar aldrig) plus varvtal och
+  skärantal; produktsidan räknar själv om till matning för valt varvtal och
+  maskinprofil i webbläsaren, med ett fritt varvtalsfält precis som
+  Matningskollens kalkylator. Produkter vars variant-SKU:er inte matchar
+  `tools.csv`, eller vars verktyg är av typen `kopier` (kullagerstyrd
+  kopieringsfräs för handhållen överfräs, inte avsedd för CNC), får inget
+  metafält.
+- Kontroll 14 i `tests/validate.mjs`: butikens produktmetafält matchar det
+  byggda. Hoppas över lokalt om Shopify-uppgifterna saknas, precis som
+  kontroll 13.
+- Release-workflowet skriver nu produktmetafälten och verifierar dem som en
+  del av `shopify`-jobbet, efter shop-metafältet `verkstaden5.chiploads`.
+
+### Notes
+
+Inga ändringar i skärdatans värden. Metafältsdefinitionen `custom.skardata`
+(typ `json`, storefront `PUBLIC_READ`) skapades manuellt i butiken innan
+första körningen.
+
+---
+
 ## [2.0.1] — 2026-09-03
 
 ### Notes
