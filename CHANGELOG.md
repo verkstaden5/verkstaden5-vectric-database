@@ -13,6 +13,19 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.1.1] — 2026-09-03
+
+### Fixed
+
+- **`shopify`-jobbet saknade `npm ci`.** `emit-product-data.mjs` importerar
+  `calc.mjs`, som behöver `yaml`-paketet — men jobbet installerade aldrig
+  beroenden (till skillnad från `bygg`-jobbet), eftersom `push-metafield.mjs`
+  klarar sig utan. v2.1.0:s release misslyckades därför på steget "Skriv
+  produktmetafälten". Källrepots release och båda distributionsrepona
+  publicerades korrekt i v2.1.0 och behövde inte göras om.
+
+---
+
 ## [2.1.0] — 2026-09-03
 
 ### Added
