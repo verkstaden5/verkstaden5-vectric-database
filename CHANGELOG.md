@@ -13,6 +13,28 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.3.0] — 2026-11-01
+
+### Added
+
+- **Danska versioner av databaserna.** Varje release bygger nu även
+  `verkstaden5-vectric-hobby-da.vtdb`, `verkstaden5-vectric-industriell-da.vtdb`,
+  `verkstaden5-fusion360-hobby-da.tools` och
+  `verkstaden5-fusion360-industriell-da.tools`. Materialnamn, verktygsgrupper
+  och anteckningar är på danska. Siffrorna är identiska med de svenska och
+  finska filerna.
+- Shop-metafältet `verkstaden5.chiploads` innehåller `oversattning.da` för
+  material och profiler, så att Matningskollen och produktsidornas
+  skärdatatabeller visar danska namn under `/da-dk`.
+
+### Notes
+
+Inga ändringar i skärdatans värden. De svenska och finska filerna har samma
+innehåll som i 2.2.0, och bara versionsnumret i Vectric-databasens anteckning
+skiljer sig. Produktmetafälten `custom.skardata` får bara nytt versionsnummer.
+
+---
+
 ## [2.2.0] — 2026-11-01
 
 ### Added
