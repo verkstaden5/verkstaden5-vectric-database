@@ -13,6 +13,33 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.2.0] — 2026-11-01
+
+### Added
+
+- **Finska versioner av databaserna.** Varje release bygger nu även
+  `verkstaden5-vectric-hobby-fi.vtdb`, `verkstaden5-vectric-industriell-fi.vtdb`,
+  `verkstaden5-fusion360-hobby-fi.tools` och
+  `verkstaden5-fusion360-industriell-fi.tools`. Materialnamn, verktygsgrupper
+  och anteckningar är på finska. Siffrorna är identiska med de svenska filerna,
+  eftersom båda språken räknas fram av samma `berakna()`.
+- `source/sprak.yaml` med filernas texter per språk, plus `oversattning` för
+  materialen i `chiploads.yaml` och profilerna i `machines.yaml`. Ett nytt
+  språk läggs till där, utan ändringar i byggskripten.
+- Shop-metafältet `verkstaden5.chiploads` innehåller `oversattning` för
+  material och profiler, så att Matningskollen och produktsidornas
+  skärdatatabeller visar namnen på butikens språk.
+- Kontroll 15: varje material, profil och verktygsgrupp har namn på alla
+  språk. Den fångar svenska namn som annars skulle hamna i en översatt fil.
+
+### Notes
+
+Inga ändringar i skärdatans värden. De svenska filerna har samma innehåll som
+i 2.1.1, och bara versionsnumret i Vectric-databasens anteckning skiljer sig.
+Produktmetafälten `custom.skardata` får bara nytt versionsnummer.
+
+---
+
 ## [2.1.1] — 2026-09-03
 
 ### Fixed
