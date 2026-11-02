@@ -13,6 +13,29 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.4.0] — 2026-11-02
+
+### Added
+
+- **Norska versioner av databaserna (bokmål).** Varje release bygger nu även
+  `verkstaden5-vectric-hobby-nb.vtdb`, `verkstaden5-vectric-industriell-nb.vtdb`,
+  `verkstaden5-fusion360-hobby-nb.tools` och
+  `verkstaden5-fusion360-industriell-nb.tools`. Materialnamn, verktygsgrupper
+  och anteckningar är på norska. Siffrorna är identiska med de svenska, finska
+  och danska filerna.
+- Shop-metafältet `verkstaden5.chiploads` innehåller `oversattning.nb` för
+  material och profiler, så att Matningskollen och produktsidornas
+  skärdatatabeller visar norska namn under `/nb-no`.
+
+### Notes
+
+Inga ändringar i skärdatans värden. De svenska, finska och danska filerna har
+samma innehåll som i 2.3.0, och bara versionsnumret i Vectric-databasens
+anteckning skiljer sig. Produktmetafälten `custom.skardata` får bara nytt
+versionsnummer.
+
+---
+
 ## [2.3.0] — 2026-11-01
 
 ### Added
