@@ -13,6 +13,29 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.6.0] — 2026-11-02
+
+### Added
+
+- **Engelska versioner av databaserna.** Varje release bygger nu även
+  `verkstaden5-vectric-hobby-en.vtdb`, `verkstaden5-vectric-industriell-en.vtdb`,
+  `verkstaden5-fusion360-hobby-en.tools` och
+  `verkstaden5-fusion360-industriell-en.tools`. Materialnamn, verktygsgrupper
+  och anteckningar är på brittisk engelska, med "router bit" och "chipload".
+  Siffrorna är identiska med de övriga språkens filer.
+- Shop-metafältet `verkstaden5.chiploads` innehåller `oversattning.en` för
+  material och profiler, så att Feed Rate Calculator och produktsidornas
+  skärdatatabeller visar engelska namn under `/en-eu`.
+
+### Notes
+
+Inga ändringar i skärdatans värden. De svenska, finska, danska, norska och
+tyska filerna har samma innehåll som i 2.5.0, och bara versionsnumret i
+Vectric-databasens anteckning skiljer sig. Produktmetafälten `custom.skardata`
+får bara nytt versionsnummer.
+
+---
+
 ## [2.5.0] — 2026-11-02
 
 ### Added
