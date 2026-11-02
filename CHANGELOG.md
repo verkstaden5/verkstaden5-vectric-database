@@ -13,6 +13,29 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.5.0] — 2026-11-02
+
+### Added
+
+- **Tyska versioner av databaserna.** Varje release bygger nu även
+  `verkstaden5-vectric-hobby-de.vtdb`, `verkstaden5-vectric-industriell-de.vtdb`,
+  `verkstaden5-fusion360-hobby-de.tools` och
+  `verkstaden5-fusion360-industriell-de.tools`. Materialnamn, verktygsgrupper
+  och anteckningar är på tyska, och chipload heter "Zahnvorschub". Siffrorna
+  är identiska med de svenska, finska, danska och norska filerna.
+- Shop-metafältet `verkstaden5.chiploads` innehåller `oversattning.de` för
+  material och profiler, så att Vorschubrechner och produktsidornas
+  skärdatatabeller visar tyska namn under `/de-de`.
+
+### Notes
+
+Inga ändringar i skärdatans värden. De svenska, finska, danska och norska
+filerna har samma innehåll som i 2.4.0, och bara versionsnumret i
+Vectric-databasens anteckning skiljer sig. Produktmetafälten `custom.skardata`
+får bara nytt versionsnummer.
+
+---
+
 ## [2.4.0] — 2026-11-02
 
 ### Added
