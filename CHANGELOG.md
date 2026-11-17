@@ -13,6 +13,128 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.8.0] — 2026-11-17
+
+### Added
+
+- **Hela sortimentet finns med: 120 fräsar, sju nya.** De läggs sist
+  (verktygsnummer 114–120), så inga befintliga nummer ändras.
+
+  | Nr | Verktyg | Vad |
+  |---|---|---|
+  | 114 | `DC-1F-D5.0-L15-C10` | 1-skärig nedåtskärande, 5 mm, 6 mm skaft |
+  | 115 | `UC-PL-1F-D5.0-L17-C1b` | 1-skärig O-flute för plast, 5 mm, 6 mm skaft |
+  | 116 | `V-D6.0-TD0.1-90°-F12` | V-bit 90° |
+  | 117 | `DC-2F-D0.6-L3-C9` | 2-skärig nedåtskärande, 0,6 mm |
+  | 118 | `UC-PL-1F-D1.5-L6-B10` | 1-skärig O-flute för plast, 1,5 mm |
+  | 119 | `SB-3F-D25.4-F11` | 3-skärig planfräs, 25,4 mm |
+  | 120 | `VG-D6.0-90°-F6` | V-spårfräs 90° för vikning av ACM |
+
+- **Skärdata för 0,6 och 1,5 mm** i trä och plast. Värdena är 2 mm-värdena
+  skalade linjärt med diametern och ligger i nedre halvan av Amanas tabell
+  för små fräsar, till exempel 0,015 mm/tand och 360 mm/min i hårt trä för
+  0,6 mm. Matningskollen visar nu också 0,6 och 1,5 mm för trä och plast.
+- **Materialet ACM / Dibond**, bara för V-spårfräsen: 0,038 mm/tand vid
+  16 000 rpm (1216 mm/min), 3 mm djup i ett pass på industrimaskin och två på
+  hobbymaskin. Värdet kommer från Amanas tabell för V-spårfräsar till ACM.
+  ACM visas inte i Matningskollen, eftersom det inte finns någon modell för
+  andra fräsar i ACM.
+- **Lättare att hitta rätt fräs i Fusion.** Beskrivningen är varukoden följd
+  av gruppens namn på ditt språk, till exempel
+  `UC-AL-DLC-1F-D3.175-L12-A9 · Aluminiumfräsar, 1-skäriga, DLC`, så att
+  sökfältet hittar fräsen på "aluminium", "V-bit" eller "kulfräs". Varukoden
+  ligger även i *Product id*, och *Product link* går till produktsidan i
+  butiken på samma språk.
+- Vectric-databasens grupper har svenska namn i den svenska filen
+  (till exempel "Aluminiumfräsar, 1-skäriga" i stället för
+  "Up cut spiral aluminium").
+- Kontroll 17: varje verktyg har en produkt i butiken (`source/produkter.csv`).
+
+### Fixed
+
+- **Fusion-biblioteket har nu skärdjup och stegbredd.** Varje preset fick
+  tidigare `use-stepdown` och `use-stepover` avslagna, så Fusion tog djupet
+  från verktygsbanan. Hobbyprofilens halverade skärdjup och smalare stegbredd
+  nådde därför bara Vectric-användarna. Nu får Fusion samma värden som Vectric,
+  i det format Fusions egna exempelbibliotek använder. Exempel: 1-skärig
+  DLC-fräs 3,175 mm i aluminium får 0,437 mm djup och 0,952 mm stegbredd i
+  hobbyprofilen, 0,873 och 1,588 mm i den industriella.
+- Kontroll 10 jämför också skärdjup och stegbredd mellan Vectric och Fusion,
+  och fallerar om de är avslagna i Fusion.
+- **V-bitar och koniska kulfräsar ritas rätt i Fusion.** De nio verktygen
+  (`V-…` och `TB-…`) visade en varningstriangel och ingen skärdata, eftersom
+  geometrin inte gick ihop: skärlängden var 18 mm oavsett vinkel, V-bitarna
+  saknade spetsdiameter, och de koniska fräsarna hade skaftets diameter i
+  spetsen och ingen kulradie. Nu räknas skärlängden ur konen, V-bitarna får
+  `tip-diameter`, och de koniska får spetsdiameter, kulradie och
+  `tapered-type: tapered_ball` enligt Fusions eget format. Verifierat genom
+  import i Fusion 2026-11-17.
+
+- **De koniska radiefräsarnas vinkel.** Alla fyra hade 20° per sida, efter
+  SKU:n. Butiken anger vinkeln per sida och den skiljer sig per radie: 6,3°
+  (R0,25), 5,8° (R0,5), 5,3° (R0,75) och 4,8° (R1,0). Med 20° trodde
+  CAM-programmet att konen var mycket bredare än den är, vilket ger fel
+  marginal mot branta väggar i 3D-banor. Gäller både Vectric (hel vinkel nu
+  12,6°–9,6° i stället för 40°) och Fusion. Kontroll 3 jämför de koniska
+  fräsarna mot butikens vinkel i stället för SKU:n.
+
+- **V-bitarnas spetsvinkel var dubbelt så stor som den ska.** Vinkeln i SKU:n
+  och på hemsidan är hel spetsvinkel, inte halv (butiken säljer även en
+  90°-bit, som skulle vara platt med halv vinkel). Rättelsen i 2.0.0 gick åt
+  fel håll. Nu gäller:
+
+  | Verktyg | Hel vinkel före | Hel vinkel nu |
+  |---|---|---|
+  | `V-D3.175-TD0.1-20°-F1`, `…-TD0.2-20°-F2` | 40° | 20° |
+  | `V-D6.0-TD0.1-30°-F3`, `…-TD0.2-30°-F4` | 60° | 30° |
+  | `V-D6.0-TD0.1-60°-F5` | 120° | 60° |
+
+  Vid V-carving räknar CAM-programmet djupet ur vinkeln, så med för stor
+  vinkel blev spåren för grunda för en given bredd.
+- `V-D6.0-TD0.1-60°-F5` följer nu samma matningstabell som övriga 6 mm
+  V-bitar. Tabellen `matning_120` är borttagen; den gällde bara när F5
+  räknades som 120°. Matningen i hårt trä går från 1800 till 2500 mm/min
+  (hobby), i nivå med 2450 mm/min som F5 hade i originaldatabasen.
+
+### Notes
+
+För befintliga verktyg är varvtal, matning och chipload oförändrade utom för
+`V-D6.0-TD0.1-60°-F5`. Planfräsen `SB-3F-D25.4-F11` har 3 skär på riktigt,
+till skillnad från `SB-3F-D22` och `SB-3F-D30`, som har 2.
+Fusion visar den koniska fräsens diameter där konen, förlängd, når spetsens
+plan (till exempel Ø0,448 mm för R0,25). Det är Fusions definition; kulan
+i spetsen är fortfarande Ø0,5 mm.
+
+**Har du sparade 3D-banor med en konisk radiefräs (`TB-…`) eller
+V-carving-banor med en V-bit (`V-…`) behöver de räknas om**, eftersom
+verktygens form har ändrats.
+
+Fusion visar vinkeln per sida i verktygslistan, så en 60° V-bit står som
+"30°" och en 20° V-bit som "10°". Varukoden inom parentes är oförändrad.
+
+---
+
+## [2.7.0] — 2026-11-11
+
+### Added
+
+- **Butikens fräsförslag ligger i källan.** Nya `source/rekommendationer.yaml`
+  anger vilka fräsar butiken föreslår per material och operation (profil och
+  spår, ficka, gravyr, 3D). Bygget skriver `dist/verktygsval.json`, och
+  releasen skriver den till shop-metafältet `verkstaden5.verktygsval`.
+  Frässtålsväljaren och Matningskollen läser därifrån, så de två verktygen
+  föreslår samma fräsar och går att köpa direkt.
+- Kontroll 16: varje material i `chiploads.yaml` har förslag, och inga okända
+  material eller operationer finns.
+
+### Notes
+
+Inga ändringar i skärdatan. Databasfilerna har samma innehåll som i 2.6.0,
+och bara versionsnumret i Vectric-databasens anteckning skiljer sig.
+Produktmetafälten `custom.skardata` får bara nytt versionsnummer.
+
+---
+
 ## [2.6.0] — 2026-11-02
 
 ### Added
