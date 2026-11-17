@@ -13,6 +13,18 @@ den ena kunde bli fem månader gammal utan att någon märkte det.
 
 ---
 
+## [2.8.1] — 2026-11-17
+
+### Fixed
+
+- **Länkarna i de tyska och engelska filerna gick till sidor som inte finns.**
+  Butikens tyska och engelska marknader är inte öppna än, så
+  `/de-de/…` och `/en-eu/…` gav 404. Produktlänkarna i Fusion och
+  sortimentslänken i Vectric går nu till butiken på verkstaden5.com tills
+  marknaderna öppnar. Inga skärdata ändras.
+
+---
+
 ## [2.8.0] — 2026-11-17
 
 ### Added
